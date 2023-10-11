@@ -1,19 +1,19 @@
-﻿using ExpenseAPI.Data;
-using ExpenseAPI.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http;
+using RoomEase.Data;
+using RoomEase.Models;
 
+namespace RoomEase.Controllers
 
-namespace ExpenseAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ExpenseController : ControllerBase
+    public class ChoresController : ControllerBase
     {
 
         private readonly ApiContext _context;
 
-        public ExpenseController(ApiContext context)
+        public ChoresController(ApiContext context)
 
         {
             _context = context;
@@ -22,26 +22,26 @@ namespace ExpenseAPI.Controllers
         //Crete/Edit
 
         [HttpPost]
-        public JsonResult CreateEdit(SharedExpense expense)
+        public JsonResult CreateEdit(ChoresList chores)
         {
-            if (expense.ID == 0)
+            if (chores.ChoreId == 0)
             {
-                _context.Expenses.Add(expense);
+                _context.Chores.Add(chores);
             }
             else
             {
-                var expenseInDb = _context.Expenses.Find(expense.ID);
+                var choresInDb = _context.Chores.Find(chores.ChoreId);
 
-                if (expenseInDb == null)
+                if (choresInDb == null)
                     return new JsonResult(NotFound());
 
-                expenseInDb = expense;
+                choresInDb = chores;
 
             }
 
             _context.SaveChanges();
 
-            return new JsonResult(Ok(expense));
+            return new JsonResult(Ok(chores));
 
 
         }
@@ -50,7 +50,7 @@ namespace ExpenseAPI.Controllers
         [HttpGet]
         public JsonResult Get(int id)
         {
-            var result= _context.Expenses.Find(id);
+            var result= _context.Chores.Find(id);
             if (result == null)
                 return new JsonResult(NotFound());
             return new JsonResult(Ok(result));
@@ -61,21 +61,21 @@ namespace ExpenseAPI.Controllers
         [HttpDelete]
         public JsonResult Delete(int id)
         {
-            var result = _context.Expenses.Find(id);
+            var result = _context.Chores.Find(id);
             if (result == null)
                 return new JsonResult(NotFound());
-            _context.Expenses.Remove(result);
+            _context.Chores.Remove(result);
             _context.SaveChanges();
             return new JsonResult(NoContent());
 
 
-        }
+        } 
 
         // Get all
         [HttpGet()]
         public JsonResult GetAll()
         {
-            var result = _context. Expenses. ToList();
+            var result = _context. Chores. ToList();
             return new JsonResult (Ok(result));
         }
         

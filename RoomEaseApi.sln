@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseAPI", "ExpenseAPI\ExpenseAPI.csproj", "{29AE86B6-C77B-46BC-A947-8CA26366BBEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomEase", "RoomEase\RoomEase.csproj", "{29AE86B6-C77B-46BC-A947-8CA26366BBEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

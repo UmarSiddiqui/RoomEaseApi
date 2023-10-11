@@ -1,4 +1,4 @@
-using ExpenseAPI.Data;
+using RoomEase.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("ExpenseDb"));
+builder.Services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("ChoresDb"));
 
 
 builder.Services.AddControllers();
