@@ -8,6 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("ExpenseDb"));
 builder.Services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("ChoresDb"));
 
+// Adding CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowVueDevServer",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:8080")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            
+        });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -24,7 +36,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowVueDevServer"); // Use the CORS policy here
 app.UseAuthorization();
 
 app.MapControllers();
