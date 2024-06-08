@@ -14,10 +14,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowVueDevServer",
         builder =>
         {
-            builder.WithOrigins("http://localhost:8080")
+            builder.WithOrigins("http://localhost:8080", "https://roomaa.netlify.app")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
-            
         });
 });
 
